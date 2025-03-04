@@ -7,6 +7,36 @@ MockExam Chatbot is an AI-powered assistant designed to help students prepare fo
 - NLP-based question matching using vectorization
 - Easy integration with a frontend and backend (NestJS)
 
+## File Structure
+```
+mockexam-chatbot/
+│── ai-model/                   # AI Model for training and inference
+│   ├── src/
+│   │   ├── train.py            # Training script for chatbot model
+│   │   ├── inference.py        # Handles chatbot responses
+│   │   ├── preprocess.py       # Text preprocessing functions
+│   ├── data/
+│   │   ├── intents.json        # Training data (questions and responses)
+│   ├── model.pkl               # Saved trained model
+│   ├── requirements.txt        # Python dependencies
+│
+│── backend/                    # Backend using NestJS
+│   ├── src/
+│   │   ├── main.ts             # Main server file
+│   │   ├── chatbot.controller.ts  # API endpoint for chatbot
+│   │   ├── chatbot.service.ts  # Handles chatbot logic
+│   ├── package.json            # Backend dependencies
+│
+│── frontend/                   # Frontend for user interaction
+│   ├── src/
+│   │   ├── App.js              # Main React app file
+│   │   ├── components/         # UI components
+│   ├── package.json            # Frontend dependencies
+│
+│── .gitignore                   # Git ignored files
+│── README.md                    # Project documentation
+```
+
 ## Installation & Setup
 1. **Clone the Repository**
 ```
