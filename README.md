@@ -15,9 +15,14 @@ mockexam-chatbot/
 │   │   ├── train.py            # Training script for chatbot model
 │   │   ├── inference.py        # Handles chatbot responses
 │   │   ├── preprocess.py       # Text preprocessing functions
+│   │   ├── vetorize.py         # Convert text to numerical data
 │   ├── data/
 │   │   ├── intents.json        # Training data (questions and responses)
-│   ├── model.pkl               # Saved trained model
+│   ├── model/
+│   │   ├── label_map.pkl       # Mapped labels
+│   │   ├── model.pkl           # Saved trained model
+│   │   ├── responses.pkl       # Saved responses
+│   │   ├── vectorizer.pkl      # TF-IDF vectorizer
 │   ├── requirements.txt        # Python dependencies
 │
 │── backend/                    # Backend using NestJS
@@ -57,7 +62,12 @@ pip install -r requirements.txt
 python src/train.py
 ```
 
-4. **Run the Chatbot**
+4. **Run the Preprocess**
+```
+python src/preprocess.py
+```
+
+5. **Run the Chatbot**
 ```
 python src/inference.py
 ```
