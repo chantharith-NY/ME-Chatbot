@@ -16,6 +16,7 @@ mockexam-chatbot/
 │   │   ├── inference.py        # Handles chatbot responses
 │   │   ├── preprocess.py       # Text preprocessing functions
 │   │   ├── vetorize.py         # Convert text to numerical data
+│   │   ├── server.py           # Connect the between inference.py to backend
 │   ├── data/
 │   │   ├── intents.json        # Training data (questions and responses)
 │   ├── model/
@@ -27,16 +28,25 @@ mockexam-chatbot/
 │
 │── backend/                    # Backend using NestJS
 │   ├── src/
+│   ├── ├── chatbot/
+│   │   │   ├── chatbot.controller.ts   # Handle the chatbot endpoint
+│   │   │   ├── chatbot.module.ts       # verify the the controllers and providers 
+│   │   │   ├── chatbot.service.ts      # Handle the logic
 │   │   ├── main.ts             # Main server file
-│   │   ├── chatbot.controller.ts  # API endpoint for chatbot
-│   │   ├── chatbot.service.ts  # Handles chatbot logic
+│   │   ├── app.controller.ts   # API endpoint
+│   │   ├── app.service.ts      # Handles logic
+│   │   ├── app.module.ts       # Handles chatbot
 │   ├── package.json            # Backend dependencies
 │
 │── frontend/                   # Frontend for user interaction
+│   ├── node_modules/
+│   ├── public/
 │   ├── src/
 │   │   ├── App.js              # Main React app file
 │   │   ├── components/         # UI components
+│   │   ├── pages/              # Homepage components
 │   ├── package.json            # Frontend dependencies
+│   ├── src/
 │
 │── .gitignore                   # Git ignored files
 │── README.md                    # Project documentation
@@ -57,19 +67,19 @@ source venv/bin/activate  # (Windows: venv\Scripts\activate)
 pip install -r requirements.txt
 ```
 
-3. **Train the Model**
-```
-python src/train.py
-```
-
-4. **Run the Preprocess**
+3. **Run the Preprocess**
 ```
 python src/preprocess.py
 ```
 
-5. **Run the Chatbot**
+4. **Run the Chatbot**
 ```
 python src/inference.py
+```
+
+5. **Run the Server**
+```
+python src/server.py
 ```
 
 ## API Integration
@@ -78,17 +88,12 @@ Once the AI model is running, you can integrate it with a NestJS backend.
 ```
 cd backend
 npm install
-npm run start
+yarn run start
 ```
 
-2. **Send a Query to the Chatbot API**
+2. **Start the React Frontend**
 ```
-POST /chatbot
-Content-Type: application/json
-
-{
-  "message": "How do I get into ITC?"
-}
+npm start
 ```
 
 ## Technologies Used
@@ -108,3 +113,6 @@ Contributions are welcome! Feel free to submit issues or pull requests.
 
 ## License
 This project is licensed under the **MIT License**.
+
+## Contact ME
+Gmail: [mailto]:("chantharith77@gmail.com")
