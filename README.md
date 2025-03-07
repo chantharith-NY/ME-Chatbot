@@ -9,47 +9,32 @@ MockExam Chatbot is an AI-powered assistant designed to help students prepare fo
 
 ## File Structure
 ```
-mockexam-chatbot/
-│── ai-model/                   # AI Model for training and inference
+ME-Chatbot/
+│── backend/                    # NestJS Backend (API)
 │   ├── src/
-│   │   ├── train.py            # Training script for chatbot model
-│   │   ├── inference.py        # Handles chatbot responses
-│   │   ├── preprocess.py       # Text preprocessing functions
-│   │   ├── vetorize.py         # Convert text to numerical data
-│   │   ├── server.py           # Connect the between inference.py to backend
+│   │   ├── chatbot/
+│   │   │   ├── chatbot.module.ts       # NestJS Module
+│   │   │   ├── chatbot.controller.ts   # API Endpoint
+│   │   │   ├── chatbot.service.ts      # Calls Python inference API
+│   │   ├── main.ts                     # Entry Point for NestJS
+│   ├── .env                            # API Configs (Python Server URL)
+│   ├── package.json                     # Dependencies
+│   ├── tsconfig.json                    # TypeScript Config
+│── ai-model/                    # Python Chatbot (Training & Response)
+│   ├── train.py                 # Train chatbot with PDF data
+│   ├── inference.py             # Process user queries & return responses
+│   ├── server.py                # Flask/FastAPI server to serve responses
+│   ├── model/                    # Folder to store trained model
 │   ├── data/
-│   │   ├── intents.json        # Training data (questions and responses)
-│   ├── model/
-│   │   ├── label_map.pkl       # Mapped labels
-│   │   ├── model.pkl           # Saved trained model
-│   │   ├── responses.pkl       # Saved responses
-│   │   ├── vectorizer.pkl      # TF-IDF vectorizer
-│   ├── requirements.txt        # Python dependencies
-│
-│── backend/                    # Backend using NestJS
+│   │   ├── raw_pdfs/             # Store original PDFs
+│   │   ├── processed/            # Store processed text from PDFs
+│   ├── requirements.txt           # Python Dependencies
+│── frontend/                      # Chatbot UI (React/Vue)
 │   ├── src/
-│   ├── ├── chatbot/
-│   │   │   ├── chatbot.controller.ts   # Handle the chatbot endpoint
-│   │   │   ├── chatbot.module.ts       # verify the the controllers and providers 
-│   │   │   ├── chatbot.service.ts      # Handle the logic
-│   │   ├── main.ts             # Main server file
-│   │   ├── app.controller.ts   # API endpoint
-│   │   ├── app.service.ts      # Handles logic
-│   │   ├── app.module.ts       # Handles chatbot
-│   ├── package.json            # Backend dependencies
-│
-│── frontend/                   # Frontend for user interaction
-│   ├── node_modules/
-│   ├── public/
-│   ├── src/
-│   │   ├── App.js              # Main React app file
-│   │   ├── components/         # UI components
-│   │   ├── pages/              # Homepage components
-│   ├── package.json            # Frontend dependencies
-│   ├── src/
-│
-│── .gitignore                   # Git ignored files
-│── README.md                    # Project documentation
+│   │   ├── components/            # UI Components
+│   │   ├── services/api.js        # Calls NestJS API
+│   ├── package.json               # Frontend Dependencies
+│── README.md                      # Documentation
 ```
 
 ## Installation & Setup
