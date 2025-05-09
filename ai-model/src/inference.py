@@ -1,24 +1,17 @@
-import joblib
-from preprocess import preprocess
+# inference.py
 
-# Load trained model and vectorizer
-vectorizer = joblib.load("/Users/nychanthrith/Documents/Chantharith/ME-Chatbot/ai-model/model/vectorizer.pkl")
-model = joblib.load("/Users/nychanthrith/Documents/Chantharith/ME-Chatbot/ai-model/model/model.pkl")
-label_map = joblib.load("/Users/nychanthrith/Documents/Chantharith/ME-Chatbot/ai-model/model/label_map.pkl")
-responses = joblib.load("/Users/nychanthrith/Documents/Chantharith/ME-Chatbot/ai-model/model/responses.pkl")
+import ollama
 
-def get_response(user_input):
-    processed_input = preprocess(user_input)
-    input_vector = vectorizer.transform([processed_input])
-    predicted_label = model.predict(input_vector)[0]
-    return responses[predicted_label][0]  # Return the best response
+def query_model(query):
+    """
+    Send a query to the trained model and get a response
+    """
+    response = ollama.chat(model="custom_itc_bot", messages=[
+        {"role": "user", "content": query}
+    ])
+    return response["message"]["content"]
 
-# Simple chatbot interaction
-# print("Chatbot is ready! Type 'exit' to quit.")
-
-# while True:
-#     user_input = input("You: ")
-#     if user_input.lower() == "exit":
-#         break
-#     response = get_response(user_input)
-#     print(f"ME Chatbot: {response}")
+if __name__ == "__main__":
+    query = input("Ask the ITC chatbot: ")
+    answer = query_model(query)
+    print("Answer:", answer)
